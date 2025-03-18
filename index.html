@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/icon.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>LEGION</title>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-MFCT45H');</script>
+  <!-- End Google Tag Manager -->
+   <!-- should be replaced with LEGION -->
+  <link rel="icon" type="image/x-icon" href="static/images/icon.ico">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">
+              <!-- <b>SkyDiffusion:</b> -->
+              <b>LEGION</b>: Learning to Ground and Explain for Synthetic Image Detection</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=kVbzWCAAAAAJ&hl=zh-CN" target="_blank">Hengrui Kang</a><sup>1,2<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>*</mo></math></sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://openreview.net/profile?id=~Siwei_Wen5" target="_blank">Siwei Wen</a><sup>3,2<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>*</mo></math></sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=N-aPFvEAAAAJ&hl=zh-CN" target="_blank">Zichen Wen</a><sup>1,2<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>*</mo></math></sup>,</span>
+              <span class="author-block">
+                <a href="https://yejy53.github.io/" target="_blank">Junyan Ye</a><sup>4,2</sup>,</span>
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                    <a href="https://liweijia.github.io/" target="_blank">Weijia Li</a><sup>4,2<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>†</mo></math></sup></span>
+                </span>
+                <span class="author-block">
+                  <a href="https://peilin-ff.github.io/" target="_blank">Peilin Feng</a><sup>3,2</sup>,</span>
+                </span>
+                <span class="author-block">
+                  <a href="https://baichuanzhou.github.io/" target="_blank">Baichuan Zhou</a><sup>2</sup>,</span>
+                </span>
+                <span class="author-block">
+                  <a href="https://wangbindl.github.io/" target="_blank">Bin Wang</a><sup>2</sup>,</span>
+                </span>
+                <span class="author-block">
+                  <a href="http://dahua.site/" target="_blank">Dahua Lin</a><sup>2,5</sup>,</span>
+                </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="http://www.zhanglinfeng.tech/" target="_blank">Linfeng Zhang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                  <a href="https://conghui.github.io/" target="_blank">Conghui He</a><sup>2,5<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>†</mo></math></sup>,</span>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University </span>
+              <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>3</sup>Beihang University </span>
+              <span class="author-block"><sup>4</sup>Sun Yat-Sen University </span>
+              <span class="author-block"><sup>5</sup>SenseTime Research</span>
+            </div>
+
+
+
+            <h4><sup><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>*</mo></math></sup>Equal Contribution<sup></h4>
+              <h4><sup><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>†</mo></math></sup>Correspondence<sup></h4>
+
+                  <!-- ArXiv abstract Link -->
+                  <span class="link-block">
+                    <!-- need update to LEGION -->
+                    <a href="https://arxiv.org/abs/2408.17267" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                
+                <!-- Github link -->
+                  <span class="link-block">
+                    <!-- need update to LEGION -->
+                    <a href="https://github.com/opendatalab/UrBench" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>code</span>
+                  </a>
+                </span>
+
+              <!-- Huggingface Dataset Link-->
+              <span class="link-block">
+                <!-- need update to LEGION -->
+                <a href="https://huggingface.co/datasets/bczhou/UrBench" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-database"></i>
+                  </span>
+                  <span>dataset</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        Your video here
+        <source src="static/videos/banner_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section> -->
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 18px">
+            The rapid advancements in generative technology have emerged as a double-edged sword. While offering powerful tools that enhance convenience, they also pose significant social concerns. 
+            As <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(47, 85, 151); background: none;">defenders</span>, current synthetic image detection methods often lack artifact-level textual interpretability and are overly focused on image manipulation detection, and current datasets usually suffer from outdated generators and a lack of fine-grained annotations. 
+            In this paper, we introduce <b>SynthScars</b>, a high-quality and diverse dataset consisting of 12,236 fully synthetic images with human-expert annotations. It features 4 distinct image content types, 3 categories of artifacts, and fine-grained annotations covering pixel-level segmentation, detailed textual explanations, and artifact category labels. 
+            Furthermore, we propose <b>LEGION</b> (<b>LE</b>arning to <b>G</b>round and explain for Synthetic <b>I</b>mage detecti<b>ON</b>), a multimodal large language model~(MLLM)-based image forgery analysis framework that integrates artifact detection, segmentation, and explanation.
+            Building upon this capability, we further explore LEGION as a <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(239, 137, 67); background: none;">controller</span>, integrating it into image refinement pipelines to guide the generation of higher-quality and more realistic images. Extensive experiments show that LEGION outperforms existing methods across multiple benchmarks, particularly surpassing the second-best traditional expert on SynthScars by <b>3.31%</b> in mIoU and <b>7.75%</b> in F1 score. Moreover, the refined images generated under its guidance exhibit stronger alignment with human preferences. The code, model, and dataset will be released.
+          
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">SynthScars Overview</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/dataset_display.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" >
+            We propose <b>SynthScars</b>, a diverse and challenging dataset tailored for fully synthetic image forgery analysis. It features 12,236 AI-generated images produced by multiple generators, covering 4 distinct image content types (Human, Object, Scene, Animal), 3 categories of artifacts (Physics, Distortion, Structure), and fine-grained annotations including pixel-level masks, detailed textual explanations, and artifact category labels.
+          </div>
+          <div class="has-text-justified" style="font-size: 20px">
+            Compared to previous datasets, <b>SynthScars</b> addresses key drawbacks and offers:
+            <ul>
+              <li>
+                <i><b>High-Quality Synthetic Images.</b></i> We meticulously curate challenging synthetic data from publicly available datasets such as 
+                Chameleon and RichHF-18K, ensuring a diverse selection of AI-generated images. These images are produced 
+                by various cutting-edge generators, including Midjourney, DALLE-3, and Stable Diffusion fine-tuned with LoRA, etc.
+              </li>
+              <li>
+                <i><b>Style and Domain Consistency.</b></i> To focus on detecting photorealistic synthetic images, which pose significant security 
+                risks and are challenging for humans to distinguish, we carefully filter out overly artistic and stylized images (e.g., cartoon or 
+                watercolor style).
+              </li>
+              <li>
+                <i><b>Dual Fine-Grained Annotations.</b></i> Our dataset includes expert-annotated, multi-dimensional labels for 12,236 samples, 
+                covering pixel-level segmentation, detailed textual explanations, and artifact category labels, providing comprehensive information 
+                for synthetic image analysis.
+              </li>
+              <li>
+                <i><b>challenging Artifact Types.</b></i> Unlike traditional forgery datasets that often focus on object-level tampered artifacts with strong 
+                contour dependencies, SynthScars introduces a more challenging set of artifacts that 
+                require global reasoning, such as inconsistencies in lighting and shadows that violate physical laws, expanding the complexity and flexibility
+                beyond locally tampered regions.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Architecture & Pipeline</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/new_case_framework.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <div class="has-text-justified" style="font-size: 20px">
+            We introduce <b>LEGION</b>, a <b>multi-task framework for image forgery analysis</b>, which serves as both a 
+            <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(47, 85, 151); background: none;">defender</span> against forgery techniques and a <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(239, 137, 67); background: none;">controller</span> for generative models:
+            <ul>
+              <li>
+                 As a <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(47, 85, 151); background: none;">defender</span>, LEGION performs image authenticity detection, artifact localization, 
+                  and anomaly-aware textual explanation generation. It exhibits strong generalization, robustness, and interpretability, 
+                  enabling a deep-level forensic analysis of synthetic images.
+              </li>
+              <li>
+                As a <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(239, 137, 67); background: none;">controller</span>, LEGION acts as an essential component in our image regeneration/inpainting pipelines, 
+                leveraging its precise artifact segmentation masks and powerful textual explanations to guide 
+                refined image descriptions and local artifact correction, ultimately enhancing the realism and perceptual quality 
+                of the generated images.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Quantitative Results for Localization</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/localization_table.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" >
+            We compare <b>LEGION</b> with SOTA models for fully synthetic artifact localization, including <b>traditional experts</b> (HiFi-Net, TruFor, PAL4VST), <b>object-grounding VLMs</b> (Ferret, Griffon, LISA), and <b>general-purpose MLLMs</b> (InternVL2, Qwen2-VL, DeepSeek-VL2). We conduct in-domain assessment on the SynthScars and further evaluate generalization to unseen domains using LOKI and RichHF-18K.
+          </div>
+          <div class="has-text-justified" style="font-size: 20px">
+            Our key findings are as follows:
+            <ul>
+              <li>
+                Compared with <b>traditional experts</b>, LEGION outperforms the strongest expert model, PAL4VST, by <b>10.65%</b> in F1 score for <b>Object</b> category on SynthScars, and also consistently surpassing it on the other two datasets.
+              </li>
+              <li>
+                For <b>object-grounding VLMs</b> and <b>general-purpose MLLMs</b>, we observe that they struggle with two extreme behaviors: some models fail to identify foreground regions altogether (e.g., DeepSeek-VL2), while others overestimate artifacts, treating most of the image as a huge artifact (e.g., Ferret, Griffon, and Qwen2-VL), resulting in low mIoU but artificially high F1 scores. InternVL2 and LISA exhibit these extremes less severely, yet LEGION outperforms both across the majority of metrics.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Cases for Localization</h2>
+      <div id="teaser-carousel" class="carousel results-carousel">
+        <div class="item" style=" height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <!-- Your image here -->
+          <!-- <h2 class="title is-4 has-text-justified" style="font-family: 'Times New Roman'">Geo-Localization</h2> -->
+          <img src="static/images/rotate_mask_case1.png" class="center-image" style="max-width: 100%; height: auto;"/>
+          <h2 class="subtitle is-5 has-text-justified">
+<!--            The 14 types of tasks under 4 evaluation dimensions.-->
+          </h2>
+
+        </div>
+        <div class="item" style=" height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <!-- Your image here -->
+          <!-- <h2 class="title is-4 has-text-justified" style="font-family: 'Times New Roman'">Scene Reasoning</h2> -->
+          <img src="static/images/rotate_mask_case2.png" class="center-image" style="max-width: 100%; height: auto;"/>
+          <h2 class="subtitle is-5 has-text-justified">
+<!--            The view types of each task.-->
+          </h2>
+
+        </div>
+        <div class="item" style=" height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <!-- Your image here -->
+          <!-- <h2 class="title is-4 has-text-justified" style="font-family: 'Times New Roman'">Scene Understanding</h2> -->
+          <img src="static/images/rotate_mask_case3.png" class="center-image" style="max-width: 100%; height: auto; top:auto; bottom: auto; align-items: center;"/>
+          <h2 class="subtitle is-5 has-text-justified">
+<!--            The statistics of UrBench. cross, sat, and str are the abbreviations for cross-view, satellite-view, and street-view. mono, pano, and multi are the-->
+<!--            abbreviations of monocular, panoramic, and multiple. MC and open means multiple-choice and open-ended, respectively.-->
+
+          </h2>
+
+        </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Quantitative Results for Explanation</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/explanation_table.png" style="max-width:90%; height: auto"/>
+          </div>
+          <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" >
+            We conduct a comparative analysis of the latest released <b>open-source (e.g., DeepSeek-VL2)</b> and <b>closed-source models (e.g., December,2024 updated GPT-4o)</b> with varying parameters. In our evaluation, we test on SynthScars and LOKI which contain detailed artifact explanations, measuring <b>ROUGE-L</b> for surface-level structural alignment and <b>CSS</b> for semantic equivalence to jointly assess both lexical coherence and contextual fidelity. 
+          </div>
+          <div class="has-text-justified" style="font-size: 20px">
+            Our key findings are as follows:
+            <ul>
+              <li>
+                <b>LEGION</b> achieves superior performance across both datasets, surpassing other multimodal large language models (MLLMs) with only 8B parameters.
+              </li>
+              <li>
+                <b>LLaVA-v1.6</b> attains the second-best results.
+              </li>
+              <li>
+                <b>DeepSeek-VL2</b> and <b>GPT-4o</b> exhibit degraded performance due to their excessively verbose and redundant outputs.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Cases for Explanation</h2>
+      <div id="teaser-carousel" class="carousel results-carousel">
+        <div class="item" style=" height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <!-- Your image here -->
+          <!-- <h2 class="title is-4 has-text-justified" style="font-family: 'Times New Roman'">Geo-Localization</h2> -->
+          <img src="static/images/expla_case1.png" class="center-image" style="max-width: 100%; height: auto;"/>
+          <h2 class="subtitle is-5 has-text-justified">
+<!--            The 14 types of tasks under 4 evaluation dimensions.-->
+          </h2>
+
+        </div>
+        <div class="item" style=" height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <!-- Your image here -->
+          <!-- <h2 class="title is-4 has-text-justified" style="font-family: 'Times New Roman'">Scene Reasoning</h2> -->
+          <img src="static/images/expla_case2.png" class="center-image" style="max-width: 100%; height: auto;"/>
+          <h2 class="subtitle is-5 has-text-justified">
+<!--            The view types of each task.-->
+          </h2>
+
+        </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Detection Performance</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/detection_table.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <!-- <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" > -->
+            <div class="has-text-justified" style="font-size: 20px;" >
+            We train <b>LEGION</b> on <b>ProGAN</b> and evaluate its cross-generator generalization on the <b>UniversalFakeDetect</b> benchmark. As a result, <b>LEGION</b> achieves the highest accuracy on GANs, CRN, and IMLE, secures competitive second-place accuracy on SITD, and maintains comparable detection performance in other generators.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">More Cases of LEGION</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/more_cases.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <!-- <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" > -->
+            <div class="has-text-justified" style="font-size: 20px;" >
+          The first row depicts the <b>ground truth</b>, while the second row shows the corresponding predictions generated by our <b>LEGION</b>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Quantitative Results for Refinement</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/hps_table.png" style="max-width: 70%; height: auto"/>
+          </div>
+          <!-- <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" > -->
+            <div class="has-text-justified" style="font-size: 20px" >
+            As a <span style="font-family: 'Consolas'; font-weight: 900; color: rgb(239, 137, 67); background: none;">controller</span>, we leverage <b>LEGION</b>'s image forgery analysis capabilities to construct two pipelines—<b>regeneration</b> and <b>inpainting</b> that enhance image generation. In this section, we randomly sample 200 images from the SynthScars test set to conduct experiments and assess the quality and realism of regenerated and inpainted images using the <b>Human Preference Score (HPS)</b>. The results indicate that after multiple iterations of optimization, the regeneration and inpainting pipelines improve the average HPS of images by <b>6.98%</b> and <b>2.14%</b>, respectively.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Qualitative Cases for Regeneration</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/regeneration_case.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" >
+            We employ an iterative generation approach by combining prompt revision with a text-to-image (T2I) model. Specifically, it iteratively refines the description of artifact regions using artifact explanations from our model <b>LEGION</b> to eliminate ambiguity and inconsistencies.
+          </div>
+          <div class="has-text-justified" style="font-size: 20px">
+            Here are two distinct examples, analyzed as follows:
+            <ul>
+              <li>
+              <b>Case 1</b>: <b>LEGION</b> detects a <b>cartoonish style</b> in the original image and refines the prompt with constraints like <b>"natural lighting"</b> and <b>"realistic style"</b>. After one refinement round, the image becomes significantly more realistic.
+              </li>
+              <li>
+              <b>Case 2</b>: The woman's left pinky finger is <b>deformed</b> in the initial image. Guided by <b>LEGION</b>, subsequent prompts add <b>hand-specific details</b>, enabling the model to refine the region. Two rounds of optimization are needed to correct the structure and achieve a natural form.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-fifths">
+        <h2 class="title is-3">Qualitative Cases for Inpainting</h2>
+        <div class="content has-text-justified">
+          <div class="column is-centered has-text-centered">
+            <img src="static/images/inpainting_case.png" style="max-width: 100%; height: auto"/>
+          </div>
+          <!-- <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" > -->
+            <div class="has-text-justified" style="font-size: 20px; margin-bottom: 20px;" >
+            We also construct a pipeline to facilitate the <b>inpainting</b> process, by using an inpainting model to iteratively remove artifacts and progressively enhance image quality. Compared to regeneration, this approach better preserves non-artifact regions since the image is not entirely regenerated but selectively refined  only for anomalous areas.
+          </div>
+          <div class="has-text-justified" style="font-size: 20px;" >
+           Here is a challenging example. In the original image, the left reflection on the water mismatches the wall's color, while the right reflection contains an unrealistic window shape, <b>violating physical laws</b>. Through multiple iterations, <b>LEGION</b> progressively identifies entire reflection region, highlighting color and shape discrepancies to guide the inpainting process. By the 3-rd iteration, the artifacted region is successfully refined, achieving high-quality restoration.
+        </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <!-- <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
