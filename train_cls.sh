@@ -1,0 +1,16 @@
+python train_cls_trainer.py \
+  --version /mnt/hwfile/opendatalab/kanghengrui/ckpt_model_ce_1.0_dice_0.2_bce_0.4/global_step703 \
+  --vision_pretrained /mnt/hwfile/opendatalab/wensiwei/checkpoint/SAM/sam_vit_h_4b8939.pth \
+  --exp_name 'Legion' \
+  --lr 1e-3 \
+  --pretrained \
+  --epochs 3 \
+  --batch_size 64 \
+  --epoch_samples 720119 \
+  --steps_per_epoch 5626 \
+  --save_path "/mnt/petrelfs/wensiwei/LEGION/groundingLMM/checkpoint/legion_cls_train/multilayer" \
+  --train_json_file "/mnt/petrelfs/wensiwei/LEGION/LEGION/data/progan_cls_train.json" \
+  --test_json_file "/mnt/petrelfs/wensiwei/LEGION/LEGION/data/progan_test_metadata.json" \
+  --data_base_train "/mnt/hwfile/opendatalab/bigdata_rs/datasets/CNNDetection/progan_train" \
+  --data_base_test "/mnt/hwfile/opendatalab/bigdata_rs/datasets/CNNDetection/progan_testset" \
+  --wandb_log
