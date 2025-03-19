@@ -19,8 +19,8 @@
 </div> -->
 
 ## 📢 Latest News
-- **[2025.3.??]**: 🔥 Now, our **SynthScars dataset is available** on HuggingFace. Feel free to download it through the [link](https://github.com/opendatalab/LEGION).
-- **[2025.3.??]**: 🔥 We have released our paper **LEGION: Learning to Ground and Explain for Synthetic Image Detection** on arXiv. Check out the [paper](https://github.com/opendatalab/LEGION) here.
+- **[2025.3.??]**: 🔥 Now, **SynthScars dataset is available** on HuggingFace. Click [here](https://github.com/opendatalab/LEGION) to download it.
+- **[2025.3.??]**: 🔥 We have released our paper on arXiv. Check out the paper [here](https://github.com/opendatalab/LEGION).
 
 ## <img id="painting_icon" width="3%" src="assets/icons/robot.png"> &nbsp;Overview
 
@@ -87,7 +87,7 @@ The directory containing the images should have the following structure:
 ## 📌 Usage
 As a **defender**, we provide the training and evaluation code for the image forgery analysis task as follows:
 
-- #### Localization and Explanation
+- ### <img id="painting_icon" width="2.2%" src="assets/icons/localization.png"> Localization and &nbsp;<img id="painting_icon" width="2.2%" src="assets/icons/explanation.png"> Explanation
   If you want to train LEGION to perform artifact localiztion and explanation generation, please run:
   ```bash
     git clone git@github.com:opendatalab/LEGION.git
@@ -98,7 +98,7 @@ As a **defender**, we provide the training and evaluation code for the image for
     git clone git@github.com:opendatalab/LEGION.git
     cd LEGION
   ```
-- #### Detection
+- ### <img id="painting_icon" width="2.2%" src="assets/icons/detection.png"> Detection
   If you want to train LEGION to conduct deepfake detection, please run:
   ```bash
     git clone git@github.com:opendatalab/LEGION.git
@@ -112,13 +112,13 @@ As a **defender**, we provide the training and evaluation code for the image for
 
 As a **controller**, we provide the pipelines of both image regeneration and inpainting for high-quality and more realistic image generation:
 
-- #### Regeneration
+- ### Regeneration
   You can run iteratively prompt revision and image regeneration via:
   ```bash
     git clone git@github.com:opendatalab/LEGION.git
     cd LEGION
   ```
-- #### Inpainting
+- ### Inpainting
   You can run iteratively regional inpainting via:
   ```bash
     git clone git@github.com:opendatalab/LEGION.git
@@ -129,19 +129,19 @@ As a **controller**, we provide the pipelines of both image regeneration and inp
 
 ## 📊 Performance
 As a **defender**, we evaluate LEGION's performance on three key subtasks: **artifact localization**, **explanation generation**, and **deepfake detection**. 
-- #### Localization
+- ### <img id="painting_icon" width="2.2%" src="assets/icons/localization.png"> Localization
     We evaluate the artifact localization task using the **SynthScars**, **RichHF-18K**, and **LOKI** datasets, which contain <u>region-level mask</u> annotations.
 <div align="center">
 <img src="assets/tables/localization_table.png" alt="result" width="90%" height="auto">
 </div>
 
-- #### Explanation 
+- ### <img id="painting_icon" width="2.2%" src="assets/icons/explanation.png"> Explanation 
     To assess the model's natural language interpretability, we use the **SynthScars** and **LOKI** datasets, which provide <u>detailed artifact explanations</u>.
 <div align="center">
 <img src="assets/tables/explanation_table.png" alt="result" width="80%" height="auto">
 </div>
 
-- #### Detection
+- ### <img id="painting_icon" width="2.2%" src="assets/icons/detection.png"> Detection
     For the deepfake detection task, we adopt the classic **UniversialFakeDetect** benchmark.
 <div align="center">
 <img src="assets/tables/detection_table.png" alt="result" width="80%" height="auto">
@@ -152,7 +152,7 @@ As a **controller**, we explore LEGION's capability to guide image generation th
 <img src="assets/tables/hps_table.png" alt="result" width="60%" height="auto">
 </div>
 
-**Note**: More visualization results and case studies please refer to our [project page](https://opendatalab.github.io/LEGION/).
+**Note**: More visualization results and case studies please refer to our [Project Page](https://opendatalab.github.io/LEGION/).
 
 ## 😄 Acknowledgement
 
