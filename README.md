@@ -117,8 +117,10 @@ As a **controller**, we provide the pipelines of both image regeneration and inp
 - ### Regeneration
   You can run iteratively prompt revision and image regeneration via:
   ```bash
-    git clone git@github.com:opendatalab/LEGION.git
-    cd LEGION
+    conda create -n legion_regenerate python=3.10 -y
+    conda activate legion_regenerate
+    pip install -r requirements_regenerate.txt
+    bash legion_regenerater.sh
   ```
 - ### Inpainting
   You can run iteratively regional inpainting via:
