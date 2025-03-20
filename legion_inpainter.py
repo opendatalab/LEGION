@@ -14,7 +14,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, DistributedSampler
 from transformers import AutoTokenizer, CLIPImageProcessor
 from eval.ddp import *
-from evaluate_ours import custom_collate_fn, inference
+from models.LEGION.inference import custom_collate_fn, inference
 from model.GLaMM import GLaMMForCausalLM
 # from model.llava import conversation as conversation_lib
 # from model.llava.mm_utils import tokenizer_image_token

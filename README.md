@@ -19,8 +19,8 @@
 </div> -->
 
 ## 📢 Latest News
-- **[2025.3.??]**: 🔥 Now, **SynthScars dataset is available** on HuggingFace. Click [here](https://github.com/opendatalab/LEGION) to download it.
-- **[2025.3.??]**: 🔥 We have released our paper on arXiv. Check out the paper [here](https://github.com/opendatalab/LEGION).
+- **[2025.3.21]**: 🔥 Now, **SynthScars dataset is available** on HuggingFace. Click [here](https://github.com/opendatalab/LEGION) to download it.
+- **[2025.3.20]**: 🔥 We have released our paper on arXiv. Check out the paper [here](https://github.com/opendatalab/LEGION).
 
 ## <img id="painting_icon" width="3%" src="assets/icons/robot.png"> &nbsp;Overview
 
@@ -64,9 +64,7 @@ MMCV_WITH_OPS=1 pip install -e .
 <img src="assets/images/dataset.png" alt="framework" width="98%" height="auto">
 </div>
 
-**SynthScars** is a high-quality and diverse dataset consisting of **12,236** fully synthetic images with human-expert annotations. It features **4** distinct image content types, **3** categories of artifacts, and fine-grained annotations covering **pixel-level segmentation**, **detailed textual explanations**, and **artifact category labels**.  Please download it from [HuggingFace]() and unzip it into the `./data` folder: 
-The directory containing the images should have the following structure:
-
+**SynthScars** is a high-quality and diverse dataset consisting of **12,236** fully synthetic images with human-expert annotations. It features **4** distinct image content types, **3** categories of artifacts, and fine-grained annotations covering **pixel-level segmentation**, **detailed textual explanations**, and **artifact category labels**.  Please download it from [HuggingFace](), unzip it into the `./data` folder, and ensure it follows the structure below:
 ```
 ./data
 ├── train
@@ -162,5 +160,13 @@ This repository is built upon the work of [GLaMM](https://github.com/mbzuai-oryx
 ## 📜 Citation
 If you find our work interesting and helpful, please consider giving our repo a star. Additionally, if you would like to cite our work, please use the following format:
 ```shell
-bibtex code
+@misc{kang2025legionlearninggroundexplain,
+      title={LEGION: Learning to Ground and Explain for Synthetic Image Detection}, 
+      author={Hengrui Kang and Siwei Wen and Zichen Wen and Junyan Ye and Weijia Li and Peilin Feng and Baichuan Zhou and Bin Wang and Dahua Lin and Linfeng Zhang and Conghui He},
+      year={2025},
+      eprint={2503.15264},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2503.15264}, 
+}
 ```
