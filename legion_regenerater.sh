@@ -1,0 +1,9 @@
+python legion_regenerater.py \
+       --api_key your_api_key \
+       --num_prompt 1 \
+       --json_file your_prompt_json_file \
+       --max_rounds 1 \
+       --foldername folder_name_to_save_results \
+       --legion_model_path /path/to/legion/ckpt \
+       --image_dir /path/to/image \
+       --diffusion_model_path diffusion_model_path \
