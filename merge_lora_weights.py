@@ -6,7 +6,7 @@ from train import setup_tokenizer_and_special_tokens, initialize_model, prepare_
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="GLaMM: Merge lora weights and save model in hf format")
+    parser = argparse.ArgumentParser(description="Merge lora weights and save model in hf format")
 
     parser.add_argument("--version", default="MBZUAI/GLaMM-GranD-Pretrained", help='Path to the base model.')
     parser.add_argument("--vision_pretrained", default="./checkpoints/sam_vit_h_4b8939.pth", type=str)

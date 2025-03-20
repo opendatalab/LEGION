@@ -67,18 +67,19 @@ MMCV_WITH_OPS=1 pip install -e .
 **SynthScars** is a high-quality and diverse dataset consisting of **12,236** fully synthetic images with human-expert annotations. It features **4** distinct image content types, **3** categories of artifacts, and fine-grained annotations covering **pixel-level segmentation**, **detailed textual explanations**, and **artifact category labels**.  Please download it from [HuggingFace](), unzip it into the `./data` folder, and ensure it follows the structure below:
 ```
 ./data
-├── train
-│   ├── images
-│   │    ├── xxxx.jpg
-│   │    └── ...
-│   └── annoations
-│        └── train.json
-└── test
-    ├── images
-    │    ├── xxxx.jpg
-    │    └── ...
-    └── annoations
-         └── test.json
+└── SynthScars
+    ├── train
+    │   ├── images
+    │   │   ├── xxx.jpg
+    │   │   └── ...
+    │   └── annoations
+    │       └── train.json
+    └── test
+        ├── images
+        │   ├── xxx.jpg
+        │   └── ...
+        └── annoations
+            └── test.json
 ```
 
 
@@ -86,15 +87,18 @@ MMCV_WITH_OPS=1 pip install -e .
 As a **defender**, we provide the training and evaluation code for the image forgery analysis task as follows:
 
 - ### <img id="painting_icon" width="2.2%" src="assets/icons/localization.png"> Localization and &nbsp;<img id="painting_icon" width="2.2%" src="assets/icons/explanation.png"> Explanation
-  If you want to train LEGION to perform artifact localiztion and explanation generation, please run:
+  If you want to train LEGION to perform artifact localiztion and explanation generation, please first download the pretrained weights of [GLaMM](https://huggingface.co/MBZUAI/GLaMM-GranD-Pretrained) & [SAM](https://huggingface.co/spaces/abhishek/StableSAM/blob/main/sam_vit_h_4b8939.pth), and then run:
   ```bash
-    git clone git@github.com:opendatalab/LEGION.git
-    cd LEGION
+    bash train_loc_exp.sh
   ```
-  If you want to infer on your data, please run:
+  After training, you need to merge the weights as follows:
   ```bash
-    git clone git@github.com:opendatalab/LEGION.git
-    cd LEGION
+    bash merge_step1.sh
+    bash merge_step2.sh
+  ```
+  If you want to infer on your data, please put them into one folder and then run:
+  ```bash
+    bash infer_loc_exp.sh
   ```
 - ### <img id="painting_icon" width="2.2%" src="assets/icons/detection.png"> Detection
   If you want to train LEGION to conduct deepfake detection, please run:
@@ -119,8 +123,7 @@ As a **controller**, we provide the pipelines of both image regeneration and inp
 - ### Inpainting
   You can run iteratively regional inpainting via:
   ```bash
-    git clone git@github.com:opendatalab/LEGION.git
-    cd LEGION
+    bash legion_inpainter.sh
   ```
   
 

@@ -16,9 +16,6 @@ from dataset.utils.utils import GCG_QUESTIONS
 import pdb
 
 class GCGBaseDataset(torch.utils.data.Dataset):
-    """
-    Dataset Class for Grounded Conversation Generation (GCG) proposed in GLaMM.
-    """
     CLASSES = ('object',)
     IMG_MEAN = torch.Tensor([123.675, 116.28, 103.53]).view(-1, 1, 1)
     IMG_STD = torch.Tensor([58.395, 57.12, 57.375]).view(-1, 1, 1)
@@ -45,7 +42,7 @@ class GCGBaseDataset(torch.utils.data.Dataset):
         # Defining paths
         self.base_dir = dataset_dir
         self.image_folder = os.path.join(image_dir)
-        self.ann_file = os.path.join(self.base_dir, "train", json_path)
+        self.ann_file = os.path.join(self.base_dir, "train", "annotations", json_path)
         with open(self.ann_file, "r") as file:
             datas = json.load(file)
         self.epoch_samples = len(datas)
