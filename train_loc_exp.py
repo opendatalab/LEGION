@@ -1,9 +1,3 @@
-"""
-train.py - GLaMM Model Training on Mixed Datasets
-
-Trains the GLaMM model using Caption, Region, and Segmentation datasets with a random sampling approach. This method
-is crucial for developing a versatile model capable of handling diverse applications effectively.
-"""
 import os
 import sys
 import time
@@ -19,18 +13,14 @@ from torch.utils.data import ConcatDataset
 from peft import LoraConfig, get_peft_model
 from torch.utils.tensorboard import SummaryWriter
 
-# from model.GLaMM import GLaMMForCausalLM, Legion
-from model.GLaMM import GLaMMForCausalLM
+from model.Legion import LegionForCausalLM
 from model.llava import conversation as conversation_lib
 
 from dataset.dataset import custom_collate_fn, HybridSegDataset, HybridRegDataset, HybridCapDataset
 from tools.utils import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN, AverageMeter, ProgressMeter, dict_to_cuda,
                          Summary, intersectionAndUnionGPU)
 
-from dataset.segm_datasets.RefCOCO_Segm_ds import ReferSegmDataset
-from dataset.region_datasets.RefCOCO_VG_Region_ds import RefCocoGRegDataset, VisualGenomeRegDataset
-from dataset.caption_datasets.COCO_Caption_ds import CocoCapDataset
-from dataset.gcg_datasets.GranDf_gcg_ds import OpenPsgGCGDataset, Flickr30kGCGDataset, RefCOCOgGCGDataset, LegionGCGDataset
+from dataset.gcg_datasets.GranDf_gcg_ds import LegionGCGDataset
 import wandb
 
 TOTAL_data_num = 0
@@ -159,7 +149,6 @@ def setup_tokenizer_and_special_tokens(args):
 
 
 def initialize_model(args, tokenizer):
-    """ Initialize the GLaMM model. """
     model_args = {k: getattr(args, k) for k in
                   ["train_mask_decoder", "out_dim", "ce_loss_weight", "dice_loss_weight", "bce_loss_weight",
                    "seg_token_idx", "vision_pretrained", "vision_tower", "use_mm_start_end", "mm_vision_select_layer",
@@ -167,13 +156,8 @@ def initialize_model(args, tokenizer):
                    "with_region", "bbox_token_idx", "eop_token_idx", "bop_token_idx"]}
     model_args["num_level_reg_features"] = 4
 
-    # 如果是分类
-    # model = Legion.from_pretrained(
-    #     args.version, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True, **model_args
-    # )
-
     # 如果是分割
-    model = GLaMMForCausalLM.from_pretrained(
+    model = LegionForCausalLM.from_pretrained(
         args.version, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True, **model_args
     )
     print('\033[92m' + "---- Initialized model from: {} ----".format(args.version) + '\033[0m')
@@ -201,9 +185,8 @@ def prepare_model_for_training(model, tokenizer, args):
     vision_tower = model.get_model().get_vision_tower()
     vision_tower.to(dtype=torch.bfloat16, device=args.local_rank)
 
-    # Initialize GLaMM model and adjust requires_grad
     if not args.pretrained:
-        model.get_model().initialize_glamm_model(model.get_model().config)
+        model.get_model().initialize_legion_model(model.get_model().config)
     else:
         for param in model.get_model().grounding_encoder.parameters():
             param.requires_grad = False
@@ -316,30 +299,13 @@ def initialize_datasets_and_loaders(args, tokenizer):
     # Validation datasets
     val_datasets = []
     if not args.no_eval:
-        val_dataset_classes = {'CocoCapVal': CocoCapDataset,
-                               'RefCOCOgRegVal': RefCocoGRegDataset,
-                               'VisGenomeRegVal': VisualGenomeRegDataset,
-                               'RefCOCOgSegmVal': ReferSegmDataset,
-                               'PsgGCGVal': OpenPsgGCGDataset,
-                               'RefCocoGCGVal': RefCOCOgGCGDataset,
-                               'FlickrGCGVal': Flickr30kGCGDataset,
+        val_dataset_classes = {
                                'Legion': LegionGCGDataset,
                                }
         for val_dataset_name in args.val_dataset.split('|'):
             val_dataset_class = val_dataset_classes.get(val_dataset_name)
             if val_dataset_class:
-                if val_dataset_class == ReferSegmDataset:
-                    # Modify this if other datasets in refer_segm_data need to be included in val
-                    refer_segm_data = 'refcocog'
-                    all_datasets = refer_segm_data.split("||")
-                    for d in all_datasets:
-                        val_dataset_class = val_dataset_class(
-                            **common_ds_args, validation=True, refer_segm_data=d, split='val'
-                        )
-                        val_dataset_class._set_len(len(val_dataset_class.refer_segm_data[d]['images']))
-                        val_datasets.append(val_dataset_class)
-                else:
-                    val_datasets.append(val_dataset_class(**common_ds_args, validation=True))
+                val_datasets.append(val_dataset_class(**common_ds_args, validation=True))
 
     return cap_train_dataset, reg_train_dataset, seg_train_dataset, val_datasets
 

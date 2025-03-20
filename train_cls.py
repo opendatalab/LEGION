@@ -4,7 +4,7 @@ import argparse
 from dataclasses import dataclass, field
 import transformers
 from torch.utils.data import Dataset
-from model.GLaMM import Legion
+from model.Legion import LegionForCls
 from model.llava import conversation as conversation_lib
 from transformers import CLIPImageProcessor, Trainer, TrainingArguments, AutoTokenizer
 import json
@@ -15,7 +15,6 @@ from tools.utils import (
 )
 from model.SAM.utils.transforms import ResizeLongestSide
 import cv2
-import pdb
 
 def parse_args():
     parser = argparse.ArgumentParser(description="LEGION Detection Training")
@@ -146,7 +145,6 @@ class CustomTrainer(Trainer):
         return (loss, outputs) if return_outputs else loss
 
 def initialize_model(args, tokenizer):
-    """ Initialize the GLaMM model. """
     model_args = {k: getattr(args, k) for k in
                   ["train_mask_decoder", "out_dim", "ce_loss_weight", "dice_loss_weight", "bce_loss_weight",
                    "seg_token_idx", "vision_pretrained", "vision_tower", "use_mm_start_end", "mm_vision_select_layer",
@@ -154,7 +152,7 @@ def initialize_model(args, tokenizer):
                    "with_region", "bbox_token_idx", "eop_token_idx", "bop_token_idx"]}
     model_args["num_level_reg_features"] = 4
 
-    model = Legion.from_pretrained(
+    model = LegionForCls.from_pretrained(
         args.version, torch_dtype=torch.bfloat16 if args.precision == 'bf16' else torch.float16, low_cpu_mem_usage=True, **model_args
     )
     print('\033[92m' + f"---- Initialized model from: {args.version} ----" + '\033[0m')
@@ -208,9 +206,8 @@ def prepare_model_for_training(model, tokenizer, args):
     vision_tower = model.get_model().get_vision_tower()
     vision_tower.to(dtype=torch.bfloat16 if args.precision == 'bf16' else torch.float16, device=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
     
-    # Initialize GLaMM model and adjust requires_grad
     if not args.pretrained:
-        model.get_model().initialize_glamm_model(model.get_model().config)
+        model.get_model().initialize_legion_model(model.get_model().config)
     else:
         for param in model.parameters():
             param.requires_grad = False

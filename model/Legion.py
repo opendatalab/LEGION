@@ -36,9 +36,9 @@ def compute_sigmoid_cross_entropy(predictions: torch.Tensor, targets: torch.Tens
     return loss
 
 
-class GLaMMBaseModel:
+class LegionBaseModel:
     def __init__(self, config, **kwargs):
-        super(GLaMMBaseModel, self).__init__(config)
+        super(LegionBaseModel, self).__init__(config)
         self.config = config
         self.vision_pretrained = kwargs.get("vision_pretrained", None)
 
@@ -48,9 +48,9 @@ class GLaMMBaseModel:
         )
         self.config.out_dim = getattr(self.config, "out_dim", kwargs.get("out_dim", 512))
 
-        self.initialize_glamm_model(self.config)
+        self.initialize_legion_model(self.config)
 
-    def initialize_glamm_model(self, config):
+    def initialize_legion_model(self, config):
         # Initialize the visual model
         self.grounding_encoder = build_sam_vit_h(self.vision_pretrained)
         self._configure_grounding_encoder(config)
@@ -81,9 +81,9 @@ class GLaMMBaseModel:
         self.text_hidden_fcs.train()
 
 
-class GLaMMModel(GLaMMBaseModel, LlavaLlamaModel):
+class LegionModel(LegionBaseModel, LlavaLlamaModel):
     def __init__(self, config, **kwargs):
-        super(GLaMMModel, self).__init__(config, **kwargs)
+        super(LegionModel, self).__init__(config, **kwargs)
         self._configure_model_settings()
 
     def _configure_model_settings(self):
@@ -98,11 +98,11 @@ class GLaMMModel(GLaMMBaseModel, LlavaLlamaModel):
         self.config.use_image_patch_token = False
 
 
-class GLaMMForCausalLM(LlavaLlamaForCausalLM):
+class LegionForCausalLM(LlavaLlamaForCausalLM):
     def __init__(self, config, **kwargs):
         self._set_model_configurations(config, kwargs)
         super().__init__(config)
-        self.model = GLaMMModel(config, **kwargs)
+        self.model = LegionModel(config, **kwargs)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
         self.post_init()
 
@@ -311,11 +311,11 @@ class GLaMMForCausalLM(LlavaLlamaForCausalLM):
             )
         return generated_output_ids, pred_masks
     
-class Legion(LlavaLlamaForCausalLM):
+class LegionForCls(LlavaLlamaForCausalLM):
     def __init__(self, config, **kwargs):
         self._set_model_configurations(config, kwargs)
         super().__init__(config)
-        self.model = GLaMMModel(config, **kwargs)
+        self.model = LegionModel(config, **kwargs)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
         self.prediction_head = nn.Sequential(
             nn.Linear(config.mm_hidden_size, 2 * config.mm_hidden_size),  

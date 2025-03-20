@@ -9,7 +9,7 @@ from transformers import AutoTokenizer, CLIPImageProcessor
 
 from eval.utils import *
 from eval.ddp import *
-from model.GLaMM import GLaMMForCausalLM
+from models.LEGION.model.Legion import GLaMMForCausalLM
 from model.llava import conversation as conversation_lib
 from model.llava.mm_utils import tokenizer_image_token
 from model.SAM.utils.transforms import ResizeLongestSide
