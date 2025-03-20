@@ -6,7 +6,7 @@
 [Hengrui Kang](https://scholar.google.com/citations?user=kVbzWCAAAAAJ&hl=zh-CN)\*, [Siwei Wen](https://openreview.net/profile?id=~Siwei_Wen5)\*, [Zichen Wen](https://scholar.google.com/citations?user=N-aPFvEAAAAJ&hl=zh-CN)\*, [Junyan Ye](https://yejy53.github.io/), [Weijia Li](https://liweijia.github.io/)<sup>†</sup><br>[Peilin Feng](https://peilin-ff.github.io/), [Baichuan Zhou](https://baichuanzhou.github.io/), [Bin Wang](https://wangbindl.github.io/), [Dahua Lin](http://dahua.site/), [Linfeng Zhang](http://www.zhanglinfeng.tech/), [Conghui He](https://conghui.github.io/)<sup>†</sup>
 
 </div>
-<a href="https://github.com/opendatalab/LEGION" target="_blank"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=badge&logo=arXiv" alt="Paper PDF" height="25"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://arxiv.org/pdf/2503.15264" target="_blank"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=badge&logo=arXiv" alt="Paper PDF" height="25"></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://opendatalab.github.io/LEGION/" target="_blank"><img alt="Website" src="https://img.shields.io/badge/🌎_Project Page-Website-blue.svg" height="25" /></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href='https://github.com/opendatalab/LEGION'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow' height="25"></a>
 </div>
