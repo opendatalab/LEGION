@@ -1,0 +1,16 @@
+python scripts/cls/train.py \
+  --version /path/to/legion/ckpt \
+  --vision_pretrained /path/to/sam/pretrained/weights \
+  --exp_name 'Legion' \
+  --lr 1e-3 \
+  --pretrained \
+  --epochs 3 \
+  --batch_size 64 \
+  --epoch_samples 720119 \
+  --steps_per_epoch 5626 \
+  --save_path "/path/to/save" \
+  --train_json_file "/path/to/progan/train/json" \
+  --test_json_file "/path/to/progan/test/json" \
+  --data_base_train "/path/to/progan/train/images" \
+  --data_base_test "/path/to/progan/test/images" \
+  --wandb_log
