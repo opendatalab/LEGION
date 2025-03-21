@@ -1,4 +1,4 @@
-python legion_regenerater.py \
+python scripts/refine/regenerator.py \
        --api_key your_api_key \
        --num_prompt 1 \
        --json_file your_prompt_json_file \

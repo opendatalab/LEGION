@@ -1,6 +1,6 @@
 export MASTER_PORT=12346
 
-deepspeed --master_port $MASTER_PORT train.py \
+deepspeed --master_port $MASTER_PORT scripts/loc_exp/train.py \
   --version '/path/to/GLaMM-GranD-Pretrained' \
   --dataset_dir ./data/ \
   --vision_pretrained /path/to/sam/pretrained/weights \

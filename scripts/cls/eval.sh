@@ -1,4 +1,4 @@
-python eval_cls.py \
+python scripts/cls/eval.py \
   --deepspeed \
   --version /path/to/legion/ckpt \
   --vision_pretrained /path/to/sam/pretrained/weights \

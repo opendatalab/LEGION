@@ -8,7 +8,7 @@
 </div>
 <a href="https://arxiv.org/pdf/2503.15264" target="_blank"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=badge&logo=arXiv" alt="Paper PDF" height="25"></a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://opendatalab.github.io/LEGION/" target="_blank"><img alt="Website" src="https://img.shields.io/badge/🌎_Project Page-Website-blue.svg" height="25" /></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href='https://github.com/opendatalab/LEGION'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow' height="25"></a>
+<a href='https://huggingface.co/datasets/khr0516/SynthScars'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow' height="25"></a>
 </div>
 
 <!-- <div align="center">
@@ -19,8 +19,8 @@
 </div> -->
 
 ## 📢 Latest News
-- **[2025.3.21]**: 🔥 Now, **SynthScars dataset is available** on HuggingFace. Click [here](https://github.com/opendatalab/LEGION) to download it.
-- **[2025.3.20]**: 🔥 We have released our paper on arXiv. Check out the paper [here](https://github.com/opendatalab/LEGION).
+- **[2025.3.21]**: 🔥 Now, **SynthScars dataset is available** on HuggingFace. Click [here](https://huggingface.co/datasets/khr0516/SynthScars) to download it.
+- **[2025.3.20]**: 🔥 We have released our paper on arXiv. Check out the paper [here](https://arxiv.org/pdf/2503.15264).
 
 ## <img id="painting_icon" width="3%" src="assets/icons/robot.png"> &nbsp;Overview
 
@@ -49,7 +49,7 @@ Our model is based on the [GLaMM](https://github.com/mbzuai-oryx/groundingLMM/bl
 ```bash
 conda create -n legion python=3.10
 conda activate legion
-pip install -r requirements.txt
+pip install -r requirements/default.txt
 
 # Install mmcv
 git clone https://github.com/open-mmlab/mmcv
@@ -64,7 +64,7 @@ MMCV_WITH_OPS=1 pip install -e .
 <img src="assets/images/dataset.png" alt="framework" width="98%" height="auto">
 </div>
 
-**SynthScars** is a high-quality and diverse dataset consisting of **12,236** fully synthetic images with human-expert annotations. It features **4** distinct image content types, **3** categories of artifacts, and fine-grained annotations covering **pixel-level segmentation**, **detailed textual explanations**, and **artifact category labels**.  Please download it from [HuggingFace](), unzip it into the `./data` folder, and ensure it follows the structure below:
+**SynthScars** is a high-quality and diverse dataset consisting of **12,236** fully synthetic images with human-expert annotations. It features **4** distinct image content types, **3** categories of artifacts, and fine-grained annotations covering **pixel-level segmentation**, **detailed textual explanations**, and **artifact category labels**.  Please download it from [HuggingFace](https://huggingface.co/datasets/khr0516/SynthScars), unzip it into the `./data` folder, and ensure it follows the structure below:
 ```
 ./data
 └── SynthScars
@@ -89,25 +89,25 @@ As a **defender**, we provide the training and evaluation code for the image for
 - ### <img id="painting_icon" width="2.2%" src="assets/icons/localization.png"> Localization and &nbsp;<img id="painting_icon" width="2.2%" src="assets/icons/explanation.png"> Explanation
   If you want to train LEGION to perform artifact localiztion and explanation generation, please first download the pretrained weights of [GLaMM](https://huggingface.co/MBZUAI/GLaMM-GranD-Pretrained) & [SAM](https://huggingface.co/spaces/abhishek/StableSAM/blob/main/sam_vit_h_4b8939.pth), and then run:
   ```bash
-    bash train_loc_exp.sh
+    bash scripts/loc_exp/train.sh
   ```
   After training, you need to merge the weights as follows:
   ```bash
-    bash merge_step1.sh
-    bash merge_step2.sh
+    bash scripts/merge_weights/step1.sh
+    bash scripts/merge_weights/step2.sh
   ```
   If you want to infer on your data, please put them into one folder and then run:
   ```bash
-    bash infer_loc_exp.sh
+    bash scripts/loc_exp/infer.sh
   ```
 - ### <img id="painting_icon" width="2.2%" src="assets/icons/detection.png"> Detection
   If you want to train LEGION to conduct deepfake detection, **please replace the data path and model path** in the bash file and run:
   ```bash
-    bash train_cls.sh
+    bash scripts/cls/train.sh
   ```
   If you want to eval on your data, please run:
   ```bash
-    bash eval_cls.sh 
+    bash scripts/cls/eval.sh
   ```
 
 As a **controller**, we provide the pipelines of both image regeneration and inpainting for high-quality and more realistic image generation:
@@ -115,15 +115,15 @@ As a **controller**, we provide the pipelines of both image regeneration and inp
 - ### Regeneration
   You can run iteratively prompt revision and image regeneration via:
   ```bash
-    conda create -n legion_regenerate python=3.10 -y
-    conda activate legion_regenerate
-    pip install -r requirements_regenerate.txt
-    bash legion_regenerater.sh
+    conda create -n regenerator python=3.10 -y
+    conda activate regenerator
+    pip install -r requirements/regenerator.txt
+    bash scripts/refine/regenerator.sh
   ```
 - ### Inpainting
   You can run iteratively regional inpainting via:
   ```bash
-    bash legion_inpainter.sh
+    bash scripts/refine/inpainter.sh
   ```
   
 

@@ -1,4 +1,4 @@
-python train_cls.py \
+python scripts/cls/train.py \
   --version /path/to/legion/ckpt \
   --vision_pretrained /path/to/sam/pretrained/weights \
   --exp_name 'Legion' \
