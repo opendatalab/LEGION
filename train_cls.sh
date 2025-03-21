@@ -8,7 +8,7 @@ python train_cls.py \
   --batch_size 64 \
   --epoch_samples 720119 \
   --steps_per_epoch 5626 \
-  --save_path "/path/tp/save" \
+  --save_path "/path/to/save" \
   --train_json_file "/path/to/progan/train/json" \
   --test_json_file "/path/to/progan/test/json" \
   --data_base_train "/path/to/progan/train/images" \

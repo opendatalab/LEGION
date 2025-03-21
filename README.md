@@ -101,15 +101,13 @@ As a **defender**, we provide the training and evaluation code for the image for
     bash infer_loc_exp.sh
   ```
 - ### <img id="painting_icon" width="2.2%" src="assets/icons/detection.png"> Detection
-  If you want to train LEGION to conduct deepfake detection, please run:
+  If you want to train LEGION to conduct deepfake detection, **please replace the data path and model path** in the bash file and run:
   ```bash
-    git clone git@github.com:opendatalab/LEGION.git
-    cd LEGION
+    bash train_cls.sh
   ```
-  If you want to infer on your data, please run:
+  If you want to eval on your data, please run:
   ```bash
-    git clone git@github.com:opendatalab/LEGION.git
-    cd LEGION
+    bash eval_cls.sh 
   ```
 
 As a **controller**, we provide the pipelines of both image regeneration and inpainting for high-quality and more realistic image generation:

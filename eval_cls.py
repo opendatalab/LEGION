@@ -5,7 +5,7 @@ import argparse
 from dataclasses import dataclass, field
 import transformers
 from torch.utils.data import Dataset, DataLoader
-from model.GLaMM import Legion
+from model.Legion import LegionForCls
 from model.llava import conversation as conversation_lib
 from transformers import CLIPImageProcessor
 import pdb
@@ -15,7 +15,7 @@ from tools.utils import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN, AverageMe
                          Summary, intersectionAndUnionGPU)
 from model.SAM.utils.transforms import ResizeLongestSide
 import cv2
-from transformers import get_cosine_schedule_with_warmup
+from transformers import AutoTokenizer
 import torch.optim as optim
 from tqdm import tqdm
 import deepspeed
@@ -129,7 +129,6 @@ class legion_cls_dataset(Dataset):
 
 
 def initialize_model(args, tokenizer):
-    """ Initialize the GLaMM model. """
     model_args = {k: getattr(args, k) for k in
                   ["train_mask_decoder", "out_dim", "ce_loss_weight", "dice_loss_weight", "bce_loss_weight",
                    "seg_token_idx", "vision_pretrained", "vision_tower", "use_mm_start_end", "mm_vision_select_layer",
@@ -137,10 +136,10 @@ def initialize_model(args, tokenizer):
                    "with_region", "bbox_token_idx", "eop_token_idx", "bop_token_idx"]}
     model_args["num_level_reg_features"] = 4
 
-    model = Legion.from_pretrained(
-        args.version, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True, **model_args
+    model = LegionForCls.from_pretrained(
+        args.version, torch_dtype=torch.bfloat16 if args.precision == 'bf16' else torch.float16, low_cpu_mem_usage=True, **model_args
     )
-    print('\033[92m' + "---- Initialized model from: {} ----".format(args.version) + '\033[0m')
+    print('\033[92m' + f"---- Initialized model from: {args.version} ----" + '\033[0m')
 
     # Configure model tokens
     model.config.eos_token_id = tokenizer.eos_token_id
@@ -151,10 +150,10 @@ def initialize_model(args, tokenizer):
 
 def setup_tokenizer_and_special_tokens(args):
     """ Load tokenizer and add special tokens. """
-    tokenizer = transformers.AutoTokenizer.from_pretrained(
-        '/mnt/hwfile/opendatalab/wensiwei/checkpoint/GLaMM-GranD-Pretrained', model_max_length=args.model_max_length, padding_side="right", use_fast=False
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.version, model_max_length=args.model_max_length, padding_side="right", use_fast=False
     )
-    print('\033[92m' + "---- Initialized tokenizer from: {} ----".format(args.version) + '\033[0m')
+    print('\033[92m' + f"---- Initialized tokenizer from: {args.version} ----" + '\033[0m')
     tokenizer.pad_token = tokenizer.unk_token
 
     if not args.pretrained:
@@ -185,21 +184,23 @@ def prepare_model_for_training(model, tokenizer, args):
 
     # Initialize vision tower
     print(
-        '\033[92m' + "---- Initialized Global Image Encoder (vision tower) from: {} ----".format(
-            args.vision_tower
-        ) + '\033[0m'
+        '\033[92m' + f"---- Initialized Global Image Encoder (vision tower) from: {args.vision_tower} ----" + '\033[0m'
     )
     model.get_model().initialize_vision_modules(model.get_model().config)
     vision_tower = model.get_model().get_vision_tower()
-    vision_tower.to(dtype=torch.bfloat16, device= torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
-    # Initialize GLaMM model and adjust requires_grad
+    vision_tower.to(dtype=torch.bfloat16 if args.precision == 'bf16' else torch.float16, device=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+    
     if not args.pretrained:
-        model.get_model().initialize_glamm_model(model.get_model().config)
+        model.get_model().initialize_legion_model(model.get_model().config)
     else:
         for param in model.parameters():
             param.requires_grad = False
-
-
+        if hasattr(model, 'prediction_head'):
+            for param in model.prediction_head.parameters():
+                param.requires_grad = True
+            print("Only 'prediction_head' layer is set to trainable.")
+        else:
+            raise AttributeError("Model does not have 'prediction_head' layer.")
 
     # Configure conversation library
     conversation_lib.default_conversation = conversation_lib.conv_templates[args.conv_type]
@@ -211,8 +212,8 @@ def prepare_model_for_training(model, tokenizer, args):
         total_params = sum(p.numel() for p in model.parameters())
         trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-        print('\033[92m' + "---- Total parameters: ----{}".format(total_params) + '\033[0m')
-        print('\033[92m' + "---- Trainable parameters: ----{}".format(trainable_params) + '\033[0m')
+        print('\033[92m' + f"---- Total parameters: {total_params} ----" + '\033[0m')
+        print('\033[92m' + f"---- Trainable parameters: {trainable_params} ----" + '\033[0m')
 
     count_parameters(model)
 

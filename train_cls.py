@@ -283,10 +283,10 @@ def main():
         load_best_model_at_end=True,
         metric_for_best_model="accuracy",
         greater_is_better=True,
-        remove_unused_columns=False, # 不设置的话，会自动识别forward不需要的参数从dataset中删掉
-        label_names=['cls_gt_list'], # 必须是列表，包含dataset getitem中的label的key的名字
-        save_strategy="epoch",  # 每个epoch保存模型
-        lr_scheduler_type="cosine",  # 余弦学习率调度
+        remove_unused_columns=False, 
+        label_names=['cls_gt_list'], 
+        save_strategy="epoch",  
+        lr_scheduler_type="cosine",  
     )
 
     # Initialize Trainer
