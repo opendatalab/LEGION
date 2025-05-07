@@ -9,7 +9,7 @@ from transformers import AutoTokenizer, CLIPImageProcessor
 
 from eval.utils import *
 from eval.ddp import *
-from models.LEGION.model.Legion import GLaMMForCausalLM
+from model.Legion import LegionForCausalLM
 from model.llava import conversation as conversation_lib
 from model.llava.mm_utils import tokenizer_image_token
 from model.SAM.utils.transforms import ResizeLongestSide
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     seg_token_idx = tokenizer("[SEG]", add_special_tokens=False).input_ids[0]
     torch_dtype = torch.bfloat16  # By default, using bf16
     kwargs = {"torch_dtype": torch_dtype}
-    model = GLaMMForCausalLM.from_pretrained(args.hf_model_path, low_cpu_mem_usage=True,
+    model = LegionForCausalLM.from_pretrained(args.hf_model_path, low_cpu_mem_usage=True,
                                              seg_token_idx=seg_token_idx, **kwargs)
     # Update model config
     model.config.eos_token_id = tokenizer.eos_token_id
@@ -147,7 +147,7 @@ if __name__ == "__main__":
     # Create DDP Dataset
     img_dir = args.image_dir
     dataset = GCGEvalDDP(img_dir)
-    distributed_sampler = DistributedSampler(dataset, rank=args.rank, shuffle=False)
+    distributed_sampler = DistributedSampler(dataset, rank=args.local_rank, shuffle=False)
     dataloader = DataLoader(dataset, batch_size=args.batch_size_per_gpu, num_workers=2,
                             sampler=distributed_sampler, collate_fn=custom_collate_fn)
     
