@@ -163,13 +163,10 @@ This repository is built upon the work of [GLaMM](https://github.com/mbzuai-oryx
 ## 📜 Citation
 If you find our work interesting and helpful, please consider giving our repo a star. Additionally, if you would like to cite our work, please use the following format:
 ```bibtex
-@misc{kang2025legionlearninggroundexplain,
-      title={LEGION: Learning to Ground and Explain for Synthetic Image Detection}, 
-      author={Hengrui Kang and Siwei Wen and Zichen Wen and Junyan Ye and Weijia Li and Peilin Feng and Baichuan Zhou and Bin Wang and Dahua Lin and Linfeng Zhang and Conghui He},
-      year={2025},
-      eprint={2503.15264},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2503.15264}, 
+@article{kang2025legion,
+  title={Legion: Learning to ground and explain for synthetic image detection},
+  author={Kang, Hengrui and Wen, Siwei and Wen, Zichen and Ye, Junyan and Li, Weijia and Feng, Peilin and Zhou, Baichuan and Wang, Bin and Lin, Dahua and Zhang, Linfeng and others},
+  journal={arXiv preprint arXiv:2503.15264},
+  year={2025}
 }
 ```
