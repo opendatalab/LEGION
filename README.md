@@ -19,6 +19,7 @@
 </div> -->
 
 ## 📢 Latest News
+- **[2025.6.25]**: 🔥 **LEGION has been accepted as a "Highlight" paper at ICCV 2025!** 🎉🎉🎉 Our model weights are being organized and are expected to be released within a week.
 - **[2025.3.21]**: 🔥 Now, **SynthScars dataset is available** on HuggingFace. Click [here](https://huggingface.co/datasets/khr0516/SynthScars) to download it.
 - **[2025.3.20]**: 🔥 We have released our paper on arXiv. Check out the paper [here](https://arxiv.org/pdf/2503.15264).
 
